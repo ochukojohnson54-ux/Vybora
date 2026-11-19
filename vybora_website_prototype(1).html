@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VYBORA — Where creators and entertainment meet</title>
+<style>
+:root{--bg:#0b0b12;--panel:#151522;--muted:#a7a7b8;--text:#fff;--a:#9b5cff;--b:#ff4da6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,Arial,sans-serif}
+header{position:sticky;top:0;background:#10101bea;backdrop-filter:blur(12px);border-bottom:1px solid #29293a;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:14px;z-index:2}
+.logo{font-size:25px;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,var(--a),var(--b));color:transparent;background-clip:text}
+nav{display:flex;gap:18px;flex-wrap:wrap}a{color:var(--muted);text-decoration:none}a:hover{color:white}
+main{max-width:1180px;margin:auto;padding:28px 5% 70px}
+.hero{padding:38px 28px;border:1px solid #37304d;border-radius:24px;background:radial-gradient(circle at 85% 20%,#652d9b88,transparent 36%),linear-gradient(120deg,#1b1730,#11111b);margin-bottom:28px}
+.hero h1{font-size:clamp(32px,6vw,58px);line-height:1.05;margin:0 0 12px}.gradient{background:linear-gradient(90deg,#bd8cff,#ff78bd);color:transparent;background-clip:text}
+.hero p{color:#d1cddd;max-width:580px}.btn{border:0;border-radius:999px;padding:12px 19px;background:linear-gradient(90deg,var(--a),var(--b));color:white;font-weight:700;cursor:pointer}
+.search{width:100%;max-width:430px;padding:12px 16px;border:1px solid #38384b;border-radius:999px;background:#171722;color:white;margin:8px 0 22px}
+.chips{display:flex;gap:9px;overflow:auto;padding-bottom:14px}.chip{white-space:nowrap;padding:8px 14px;border-radius:30px;background:#1b1b2a;color:#ddd;border:1px solid #303044}
+h2{margin:22px 0 14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:17px}
+.card{background:var(--panel);border:1px solid #29293b;border-radius:17px;overflow:hidden}.thumb{height:145px;background:linear-gradient(135deg,#39205e,#9b3e83 55%,#f18a8a);display:grid;place-items:center;font-size:42px}.card:nth-child(2) .thumb{background:linear-gradient(135deg,#173c59,#397e91)}.card:nth-child(3) .thumb{background:linear-gradient(135deg,#5b3024,#c17b3e)}.card:nth-child(4) .thumb{background:linear-gradient(135deg,#283c2c,#78a36b)}
+.info{padding:13px}.info strong{display:block}.info small{color:var(--muted)}
+footer{border-top:1px solid #29293a;color:var(--muted);padding:24px 5%;text-align:center}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:5;place-items:center;padding:20px}.modal.open{display:grid}.dialog{width:min(440px,100%);background:#191927;border:1px solid #44405a;border-radius:18px;padding:22px}.dialog input{display:block;width:100%;margin:12px 0;padding:12px;border-radius:9px;border:1px solid #44405a;background:#10101a;color:white}
+@media(max-width:600px){header{align-items:flex-start;flex-direction:column}nav{gap:12px;font-size:13px}.hero{padding:28px 20px}}
+</style>
+</head>
+<body>
+<header><div class="logo">VYBORA</div><nav><a href="#">Home</a><a href="#movies">Movies</a><a href="#music">Music</a><a href="#learn">Learning</a><a href="#creators">Creators</a></nav><button class="btn" onclick="openModal()">Sign in / Join</button></header>
+<main>
+<section class="hero"><h1>Where creators and <span class="gradient">entertainment</span> meet.</h1><p>Discover movies, AI creations, comedy, music, learning and fresh videos from creators everywhere.</p><button class="btn" onclick="document.getElementById('discover').scrollIntoView({behavior:'smooth'})">Explore videos</button></section>
+<input class="search" id="search" placeholder="Search videos, movies and creators..." oninput="filterCards()">
+<div class="chips"><span class="chip">For you</span><span class="chip">Trending</span><span class="chip">AI movies</span><span class="chip">Comedy</span><span class="chip">Music</span><span class="chip">Education</span><span class="chip">Short films</span></div>
+<section id="discover"><h2>Discover on VYBORA</h2><div class="grid" id="cards">
+<article class="card"><div class="thumb">▶</div><div class="info"><strong>Featured AI Movie</strong><small>VYBORA Originals · Sample video</small></div></article>
+<article class="card"><div class="thumb">♪</div><div class="info"><strong>Music & Performances</strong><small>Creator spotlight · Sample video</small></div></article>
+<article class="card"><div class="thumb">✦</div><div class="info"><strong>Comedy & Skits</strong><small>Trending creators · Sample video</small></div></article>
+<article class="card"><div class="thumb">▶</div><div class="info"><strong>Learn Something New</strong><small>Learning hub · Sample video</small></div></article>
+</div></section>
+<section id="movies"><h2>Movies & series</h2><p style="color:var(--muted)">A home for short films, episodes and independent productions.</p></section>
+<section id="creators"><h2>For creators</h2><p style="color:var(--muted)">Build your channel, share your work and grow your audience.</p><button class="btn" onclick="openModal()">Join as a creator</button></section>
+</main>
+<footer>© 2026 VYBORA · Where creators and entertainment meet.</footer>
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="dialog"><h2>Welcome to VYBORA</h2><p style="color:var(--muted)">Account sign-in and registration will be connected in the next development step.</p><input placeholder="Email address" type="email"><input placeholder="Password" type="password"><button class="btn" onclick="alert('This is a visual prototype. Account creation is not connected yet.')">Continue</button> <button class="chip" onclick="closeModal()">Close</button></div></div>
+<script>
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function filterCards(){const q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('#cards .card').forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none')}
+</script>
+</body></html>
