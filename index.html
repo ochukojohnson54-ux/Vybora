@@ -3,157 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VIBORA - Play, Connect & Earn</title>
+<title>VIBORA AI - Create Without Limits</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#0b1020;color:#fff}
-header{background:#111a31;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.logo{font-size:27px;font-weight:900;color:#a78bfa}
-nav{display:flex;gap:16px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;font-size:13px}
-button{border:0;border-radius:9px;padding:12px 17px;font-weight:bold;cursor:pointer}
-.primary{background:#8b5cf6;color:white}
-.secondary{background:#24304d;color:white}
-.hero{padding:65px 6%;background:linear-gradient(120deg,#251052,#102c58,#111a31)}
-.hero h1{font-size:clamp(35px,7vw,65px);max-width:700px;margin-bottom:15px}
-.hero p{color:#d5d9ed;line-height:1.7;max-width:600px;margin-bottom:24px}
-section{padding:35px 6%}
-h2{margin-bottom:18px;font-size:25px}
-.sub{color:#aab5d0;margin-top:-10px;margin-bottom:20px;font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:17px}
-.card{background:#151f38;border:1px solid #283653;border-radius:15px;padding:19px}
-.card h3{margin:10px 0}
-.card p{color:#aebbd4;font-size:14px;line-height:1.6;margin-bottom:13px}
-.emoji{font-size:35px}
-.tag{display:inline-block;background:#33245e;color:#d8c8ff;padding:6px 10px;border-radius:20px;font-size:11px}
-.activity{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #29334a}
-.avatar{background:#44316f;border-radius:50%;width:40px;height:40px;display:grid;place-items:center}
-.activity small{color:#aebbd4}
-.highlight{color:#c4b5fd}
-footer{background:#080d19;padding:30px 6%;color:#9ca9c5;font-size:13px;line-height:2}
-.modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;align-items:center;justify-content:center;padding:20px}
-.modalbox{background:#151f38;border:1px solid #465477;border-radius:16px;padding:25px;width:100%;max-width:420px}
-.modalbox input{width:100%;padding:13px;margin:8px 0 14px;border-radius:8px;border:1px solid #465477;background:#0b1020;color:white}
-.modalbox h2{margin-bottom:15px}
-.close{float:right;background:#29334a;color:white}
-.notice{font-size:12px;color:#aebbd4;margin-top:12px;line-height:1.6}
-.locked{opacity:.85}
-@media(max-width:600px){header{align-items:flex-start;gap:14px;flex-direction:column}nav{gap:12px}.hero{padding-top:45px}}
+body{font-family:Arial,sans-serif;background:#090817;color:#fff;line-height:1.6}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 6%;background:#11102a;position:sticky;top:0;z-index:10;border-bottom:1px solid #29234b}
+.logo{font-size:25px;font-weight:900;color:#a78bfa}
+nav a{color:#ddd;text-decoration:none;margin-left:18px;font-size:14px}
+.hero{text-align:center;padding:75px 20px 55px;background:radial-gradient(circle at top,#39216d,#090817 65%)}
+.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.15;margin-bottom:18px}
+.hero h1 span{color:#a78bfa}
+.hero p{color:#c5c1d9;max-width:600px;margin:0 auto 25px}
+.btn{display:inline-block;background:linear-gradient(90deg,#7044df,#a855f7);padding:13px 25px;border-radius:9px;color:white;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+.btn.secondary{background:#252044;border:1px solid #7661b9}
+section{padding:55px 6%}
+.section-title{text-align:center;font-size:29px;margin-bottom:10px}
+.section-sub{text-align:center;color:#aaa;margin-bottom:30px}
+.tools,.movies,.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:#17152d;border:1px solid #302951;padding:23px;border-radius:15px;transition:.2s}
+.card:hover{border-color:#a78bfa;transform:translateY(-3px)}
+.card .icon{font-size:32px;margin-bottom:10px}
+.card h3{margin-bottom:7px}
+.card p{color:#aaa;font-size:14px;margin-bottom:15px}
+.card button{background:#302052;color:#fff;border:1px solid #6548a0;padding:10px 15px;border-radius:7px;cursor:pointer}
+.feature{background:linear-gradient(110deg,#24134d,#17152d);border-radius:18px;padding:30px;text-align:center}
+.feature h2{font-size:30px;margin-bottom:10px}
+.poster{height:190px;border-radius:10px;margin-bottom:14px;display:flex;align-items:end;padding:15px;font-weight:bold;background:linear-gradient(145deg,#54348a,#10152d 65%,#b35b91)}
+.poster.two{background:linear-gradient(145deg,#14627d,#17152d 65%,#a15b9d)}
+.poster.three{background:linear-gradient(145deg,#a34e30,#25133f 65%,#e2a65c)}
+.poster.four{background:linear-gradient(145deg,#344c83,#15152d 65%,#8c54bf)}
+.ad{background:linear-gradient(100deg,#30205f,#182b55);padding:30px;border-radius:15px;text-align:center}
+.ad p{color:#ddd;margin:8px 0 18px}
+.price{font-size:30px;color:#c4a5ff;font-weight:bold;margin:12px 0}
+footer{text-align:center;padding:30px;background:#11102a;color:#aaa;font-size:13px}
+footer a{color:#c4a5ff;text-decoration:none}
+@media(max-width:650px){
+header{flex-wrap:wrap;gap:12px}
+nav{width:100%;display:flex;justify-content:space-between;gap:8px}
+nav a{margin:0;font-size:12px}
+section{padding:42px 5%}
+}
 </style>
 </head>
 <body>
 
 <header>
- <div class="logo">VIBORA</div>
- <nav>
-  <a href="#home">Home</a>
-  <a href="#games">Games</a>
-  <a href="#tasks">Daily Tasks</a>
-  <a href="#community">Community</a>
-  <a href="#rewards">Rewards</a>
- </nav>
- <button class="primary" onclick="openModal()">Join / Login</button>
+<div class="logo">VIBORA AI</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#studio">AI Studio</a>
+<a href="#movies">Movies</a>
+<a href="#pricing">Pricing</a>
+</nav>
 </header>
 
 <div class="hero" id="home">
- <span class="tag">WELCOME TO VIBORA</span>
- <h1>Play Games. Connect. <span class="highlight">Earn Rewards.</span></h1>
- <p>Discover exciting games, complete daily activities, meet other members and enjoy the Vibora experience.</p>
- <button class="primary" onclick="openModal()">JOIN VIBORA</button>
- <button class="secondary" onclick="document.getElementById('games').scrollIntoView()">EXPLORE GAMES</button>
+<h1>Turn Your Ideas Into <span>Amazing Content</span></h1>
+<p>Create stunning images, write movie scripts, generate videos and bring your imagination to life with VIBORA AI.</p>
+<a class="btn" href="#studio">Start Creating</a>
+<a class="btn secondary" href="#movies">Explore Movies</a>
 </div>
 
-<section id="games">
- <h2>🎮 Explore Games</h2>
- <p class="sub">Discover games waiting for you on Vibora.</p>
- <div class="grid">
-  <div class="card"><div class="emoji">🧩</div><span class="tag">PUZZLE</span><h3>Brain Challenge</h3><p>Test your thinking skills with exciting puzzles.</p><button class="primary" onclick="lockedAction()">Explore Game</button></div>
-  <div class="card"><div class="emoji">🏎️</div><span class="tag">RACING</span><h3>Speed Challenge</h3><p>Challenge yourself and aim for the leaderboard.</p><button class="primary" onclick="lockedAction()">Explore Game</button></div>
-  <div class="card"><div class="emoji">🎯</div><span class="tag">ARCADE</span><h3>Target Master</h3><p>Test your accuracy and improve your score.</p><button class="primary" onclick="lockedAction()">Explore Game</button></div>
-  <div class="card"><div class="emoji">🧠</div><span class="tag">QUIZ</span><h3>Knowledge Arena</h3><p>Answer questions and challenge your knowledge.</p><button class="primary" onclick="lockedAction()">Explore Game</button></div>
- </div>
-</section>
-
-<section id="tasks">
- <h2>📋 Daily Tasks</h2>
- <p class="sub">Complete activities and discover eligible rewards.</p>
- <div class="grid">
-  <div class="card"><div class="emoji">🌟</div><h3>Daily Check-in</h3><p>Visit Vibora and check your daily activity.</p><button class="primary" onclick="lockedAction()">View Task</button></div>
-  <div class="card"><div class="emoji">🎮</div><h3>Play a Game</h3><p>Take part in available gaming activities.</p><button class="primary" onclick="lockedAction()">View Task</button></div>
-  <div class="card"><div class="emoji">🤝</div><h3>Invite Friends</h3><p>Invite friends using your personal referral link.</p><button class="primary" onclick="lockedAction()">View Task</button></div>
- </div>
-</section>
-
-<section id="rewards">
- <h2>💰 Rewards & Wallet</h2>
- <div class="grid">
-  <div class="card"><div class="emoji">🪙</div><h3>Vibora Coins</h3><p>Coins will be used for eligible games and platform activities.</p><button class="primary" onclick="lockedAction()">My Coins</button></div>
-  <div class="card"><div class="emoji">👛</div><h3>My Wallet</h3><p>View your wallet and eligible reward balance after registration.</p><button class="primary" onclick="lockedAction()">Open Wallet</button></div>
-  <div class="card"><div class="emoji">🏦</div><h3>Withdraw Rewards</h3><p>Eligible members will be able to request withdrawals under Vibora's reward rules.</p><button class="primary" onclick="lockedAction()">Withdraw</button></div>
- </div>
-</section>
-
-<section id="community">
- <h2>🌍 Vibora Community</h2>
- <p class="sub">A place for members to connect and share interesting moments.</p>
- <div class="grid">
-  <div class="card"><div class="activity"><div class="avatar">👤</div><div><b>Vibora Member</b><br><small>Joined the community</small></div></div><p>Every great Vibora journey starts with joining the community.</p></div>
-  <div class="card"><div class="activity"><div class="avatar">🎮</div><div><b>Gaming Community</b><br><small>Featured activity</small></div></div><p>Discover games, meet players and take part in challenges.</p></div>
- </div>
-</section>
-
-<section>
- <h2>🏆 Leaderboard</h2>
- <p class="sub">A preview of the members leaderboard.</p>
- <div class="card">
-  <div class="activity"><b>🥇</b><span>Top Player</span><span style="margin-left:auto">Coming soon</span></div>
-  <div class="activity"><b>🥈</b><span>Second Player</span><span style="margin-left:auto">Coming soon</span></div>
-  <div class="activity"><b>🥉</b><span>Third Player</span><span style="margin-left:auto">Coming soon</span></div>
- </div>
+<section id="studio">
+<h2 class="section-title">Your AI Creative Studio</h2>
+<p class="section-sub">Choose what you want to create.</p>
+<div class="tools">
+<div class="card">
+<div class="icon">🎨</div>
+<h3>Generate Image</h3>
+<p>Turn your words into beautiful AI images and artwork.</p>
+<button onclick="demo('Image Generation')">Create Image</button>
+</div>
+<div class="card">
+<div class="icon">🎬</div>
+<h3>Image to Video</h3>
+<p>Transform your pictures into moving video scenes.</p>
+<button onclick="demo('Image to Video')">Create Video</button>
+</div>
+<div class="card">
+<div class="icon">📝</div>
+<h3>Write a Script</h3>
+<p>Turn your ideas into stories, dialogue and movie scripts.</p>
+<button onclick="demo('Script Writer')">Write Script</button>
+</div>
+<div class="card">
+<div class="icon">🎥</div>
+<h3>Script to Video</h3>
+<p>Bring your written stories to life as video scenes.</p>
+<button onclick="demo('Script to Video')">Make Video</button>
+</div>
+<div class="card">
+<div class="icon">🎙️</div>
+<h3>AI Voices</h3>
+<p>Create voiceovers and narration for your projects.</p>
+<button onclick="demo('AI Voices')">Explore Voices</button>
+</div>
+<div class="card">
+<div class="icon">🍿</div>
+<h3>Create a Movie</h3>
+<p>Build cinematic stories from your imagination.</p>
+<button onclick="demo('Movie Creator')">Create Movie</button>
+</div>
+</div>
 </section>
 
 <section>
- <div class="card">
-  <h2>🚀 Become Part of Vibora</h2>
-  <p>Everyone starts as a regular member. After at least 15 days of membership, eligible active members may apply to become agents. Approved agents may later apply to become agency owners.</p>
-  <button class="primary" onclick="openModal()">Register Now</button>
- </div>
+<div class="feature">
+<h2>Imagine It. Create It. Share It.</h2>
+<p>One creative platform for storytellers, filmmakers, businesses and content creators worldwide.</p>
+<br>
+<a href="#studio" class="btn">Explore AI Tools</a>
+</div>
+</section>
+
+<section id="movies">
+<h2 class="section-title">Explore Movie Inspiration</h2>
+<p class="section-sub">Discover different cinematic worlds.</p>
+<div class="movies">
+<div class="card">
+<div class="poster">AFRICAN CINEMA</div>
+<h3>African Stories</h3>
+<p>Drama, culture and powerful storytelling.</p>
+</div>
+<div class="card">
+<div class="poster two">ACTION & ADVENTURE</div>
+<h3>Action Movies</h3>
+<p>Explore thrilling cinematic ideas.</p>
+</div>
+<div class="card">
+<div class="poster three">ROMANCE & DRAMA</div>
+<h3>Romance</h3>
+<p>Emotional stories and unforgettable moments.</p>
+</div>
+<div class="card">
+<div class="poster four">FANTASY WORLDS</div>
+<h3>Fantasy & Sci-Fi</h3>
+<p>Discover imaginative worlds and adventures.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="ad">
+<h2>Advertise Your Business on VIBORA</h2>
+<p>Reach creators and audiences around the world with sponsored promotions.</p>
+<a href="mailto:advertise@vibora.ai" class="btn">Advertise With Us</a>
+</div>
+</section>
+
+<section>
+<h2 class="section-title">Creator Showcase</h2>
+<p class="section-sub">A place for creators to share their AI creations.</p>
+<div class="feature">
+<div style="font-size:42px">🌍 🎨 🎬</div>
+<h2>Let the World See Your Creativity</h2>
+<p>Creator profiles and public project showcases are coming soon.</p>
+</div>
+</section>
+
+<section id="pricing">
+<h2 class="section-title">Choose Your Creative Plan</h2>
+<p class="section-sub">Start free and upgrade when you need more.</p>
+<div class="plans">
+<div class="card">
+<h3>Free Creator</h3>
+<div class="price">Free</div>
+<p>Try the studio with limited free credits.</p>
+<button onclick="demo('Free Plan')">Get Started</button>
+</div>
+<div class="card">
+<h3>Creator Plus</h3>
+<div class="price">Coming Soon</div>
+<p>More creative credits and advanced tools.</p>
+<button onclick="demo('Creator Plus')">Explore Plan</button>
+</div>
+<div class="card">
+<h3>Pro Creator</h3>
+<div class="price">Coming Soon</div>
+<p>Higher generation limits and premium features.</p>
+<button onclick="demo('Pro Creator')">Explore Plan</button>
+</div>
+</div>
 </section>
 
 <footer>
- <h2 class="highlight">VIBORA</h2>
- Play. Connect. Enjoy.
- <p>Games • Community • Daily Tasks • Rewards</p>
- <p>© 2026 Vibora. All rights reserved.</p>
+<h2 style="color:#a78bfa">VIBORA AI</h2>
+<p>Create Without Limits.</p>
+<p>© 2026 VIBORA AI. All rights reserved.</p>
+<p>Images and movie previews on this demo are illustrative.</p>
 </footer>
 
-<div class="modal" id="joinModal">
- <div class="modalbox">
-  <button class="close" onclick="closeModal()">Close</button>
-  <h2>Join Vibora</h2>
-  <p>Registration and login will be connected to the secure member system.</p>
-  <input type="text" placeholder="Your full name">
-  <input type="email" placeholder="Your email address">
-  <input type="password" placeholder="Create a password">
-  <button class="primary" onclick="demoNotice()">Continue</button>
-  <p class="notice">This is a visual prototype. No account or password is saved or transmitted.</p>
- </div>
-</div>
-
 <script>
-function openModal(){
- document.getElementById('joinModal').style.display='flex';
-}
-function closeModal(){
- document.getElementById('joinModal').style.display='none';
-}
-function lockedAction(){
- openModal();
-}
-function demoNotice(){
- alert('This is a prototype. Real registration will be added when Vibora has its secure backend.');
+function demo(feature){
+alert(feature + " will be available when the AI services are connected to VIBORA.");
 }
 </script>
+
 </body>
-  </html>
-                                                                                                                                                                 
+ </html>
+ 
