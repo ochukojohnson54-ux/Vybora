@@ -3,23 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090817">
 <title>VIBORA AI - Create Without Limits</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;background:#090817;color:#fff;line-height:1.6}
 header{display:flex;justify-content:space-between;align-items:center;padding:18px 6%;background:#11102a;position:sticky;top:0;z-index:10;border-bottom:1px solid #29234b}
 .logo{font-size:25px;font-weight:900;color:#a78bfa}
-nav a{color:#ddd;text-decoration:none;margin-left:18px;font-size:14px}
+nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+nav a{color:#ddd;text-decoration:none;font-size:14px}
+nav a:hover{color:#a78bfa}
 .hero{text-align:center;padding:75px 20px 55px;background:radial-gradient(circle at top,#39216d,#090817 65%)}
 .hero h1{font-size:clamp(34px,6vw,58px);line-height:1.15;margin-bottom:18px}
 .hero h1 span{color:#a78bfa}
 .hero p{color:#c5c1d9;max-width:600px;margin:0 auto 25px}
-.btn{display:inline-block;background:linear-gradient(90deg,#7044df,#a855f7);padding:13px 25px;border-radius:9px;color:white;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+.btn{display:inline-block;background:linear-gradient(90deg,#7044df,#a855f7);padding:12px 22px;border-radius:9px;color:white;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
 .btn.secondary{background:#252044;border:1px solid #7661b9}
+.btn.small{padding:9px 14px;font-size:13px}
 section{padding:55px 6%}
 .section-title{text-align:center;font-size:29px;margin-bottom:10px}
 .section-sub{text-align:center;color:#aaa;margin-bottom:30px}
-.tools,.movies,.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.tools,.movies,.plans,.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
 .card{background:#17152d;border:1px solid #302951;padding:23px;border-radius:15px;transition:.2s}
 .card:hover{border-color:#a78bfa;transform:translateY(-3px)}
 .card .icon{font-size:32px;margin-bottom:10px}
@@ -37,24 +42,60 @@ section{padding:55px 6%}
 .price{font-size:30px;color:#c4a5ff;font-weight:bold;margin:12px 0}
 footer{text-align:center;padding:30px;background:#11102a;color:#aaa;font-size:13px}
 footer a{color:#c4a5ff;text-decoration:none}
-@media(max-width:650px){
+
+/* Gallery */
+.gallery-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.gallery-controls button,.filter-btn{background:#211d3d;border:1px solid #493b70;color:white;padding:10px 17px;border-radius:8px;cursor:pointer}
+.gallery-controls button.active,.filter-btn.active{background:#7044df}
+.gallery-card{background:#17152d;border:1px solid #302951;border-radius:14px;overflow:hidden}
+.gallery-art{height:190px;display:flex;align-items:center;justify-content:center;font-size:65px;background:linear-gradient(145deg,#54348a,#15152d,#a855f7)}
+.gallery-art.video{background:linear-gradient(145deg,#14627d,#17152d,#a15b9d)}
+.gallery-art.story{background:linear-gradient(145deg,#a34e30,#25133f,#e2a65c)}
+.gallery-info{padding:17px}
+.gallery-info p{font-size:13px;color:#aaa;margin-top:5px}
+.gallery-label{font-size:11px;color:#c4a5ff;text-transform:uppercase;letter-spacing:1px}
+
+/* Account and dashboard */
+.account-area{display:flex;gap:8px;align-items:center}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:30;align-items:center;justify-content:center;padding:18px}
+.modal.show{display:flex}
+.modal-box{width:100%;max-width:440px;background:#17152d;border:1px solid #6548a0;border-radius:16px;padding:27px;max-height:90vh;overflow:auto}
+.modal-box h2{margin-bottom:8px}
+.modal-box p{color:#aaa;font-size:14px;margin-bottom:17px}
+.modal-box input,.modal-box textarea,.modal-box select{width:100%;padding:12px;margin:7px 0 14px;background:#0d0b20;border:1px solid #493b70;border-radius:8px;color:white}
+.modal-box label{font-size:13px;color:#ddd}
+.close{float:right;background:none;border:0;color:white;font-size:25px;cursor:pointer}
+.notice{background:#292044;border:1px solid #6548a0;padding:13px;border-radius:9px;color:#ddd;font-size:13px;margin:15px 0}
+.dashboard{background:#17152d;border:1px solid #302951;border-radius:15px;padding:25px}
+.hidden{display:none!important}
+.status{font-size:12px;color:#c4a5ff}
+.empty{text-align:center;padding:35px;color:#aaa;background:#17152d;border-radius:12px}
+@media(max-width:700px){
 header{flex-wrap:wrap;gap:12px}
-nav{width:100%;display:flex;justify-content:space-between;gap:8px}
-nav a{margin:0;font-size:12px}
+nav{width:100%;justify-content:space-between;gap:8px}
+nav a{font-size:12px}
 section{padding:42px 5%}
+.account-area{width:100%}
 }
 </style>
 </head>
+
 <body>
 
 <header>
 <div class="logo">VIBORA AI</div>
+
 <nav>
 <a href="#home">Home</a>
 <a href="#studio">AI Studio</a>
 <a href="#movies">Movies</a>
+<a href="#gallery">Creator Gallery</a>
 <a href="#pricing">Pricing</a>
 </nav>
+
+<div class="account-area">
+<button class="btn small" onclick="openAccount()">Sign In / Join</button>
+</div>
 </header>
 
 <div class="hero" id="home">
@@ -67,6 +108,7 @@ section{padding:42px 5%}
 <section id="studio">
 <h2 class="section-title">Your AI Creative Studio</h2>
 <p class="section-sub">Choose what you want to create.</p>
+
 <div class="tools">
 <div class="card">
 <div class="icon">🎨</div>
@@ -74,30 +116,28 @@ section{padding:42px 5%}
 <p>Turn your words into beautiful AI images and artwork.</p>
 <button onclick="demo('Image Generation')">Create Image</button>
 </div>
+
 <div class="card">
 <div class="icon">🎬</div>
-<h3>Image to Video</h3>
-<p>Transform your pictures into moving video scenes.</p>
+<h3>Image to Video + Voice</h3>
+<p>Transform pictures into moving video scenes with sound and narration.</p>
 <button onclick="demo('Image to Video')">Create Video</button>
 </div>
+
 <div class="card">
 <div class="icon">📝</div>
 <h3>Write a Script</h3>
 <p>Turn your ideas into stories, dialogue and movie scripts.</p>
 <button onclick="demo('Script Writer')">Write Script</button>
 </div>
+
 <div class="card">
 <div class="icon">🎥</div>
 <h3>Script to Video</h3>
 <p>Bring your written stories to life as video scenes.</p>
 <button onclick="demo('Script to Video')">Make Video</button>
 </div>
-<div class="card">
-<div class="icon">🎙️</div>
-<h3>AI Voices</h3>
-<p>Create voiceovers and narration for your projects.</p>
-<button onclick="demo('AI Voices')">Explore Voices</button>
-</div>
+
 <div class="card">
 <div class="icon">🍿</div>
 <h3>Create a Movie</h3>
@@ -119,22 +159,26 @@ section{padding:42px 5%}
 <section id="movies">
 <h2 class="section-title">Explore Movie Inspiration</h2>
 <p class="section-sub">Discover different cinematic worlds.</p>
+
 <div class="movies">
 <div class="card">
 <div class="poster">AFRICAN CINEMA</div>
 <h3>African Stories</h3>
 <p>Drama, culture and powerful storytelling.</p>
 </div>
+
 <div class="card">
 <div class="poster two">ACTION & ADVENTURE</div>
 <h3>Action Movies</h3>
 <p>Explore thrilling cinematic ideas.</p>
 </div>
+
 <div class="card">
 <div class="poster three">ROMANCE & DRAMA</div>
 <h3>Romance</h3>
 <p>Emotional stories and unforgettable moments.</p>
 </div>
+
 <div class="card">
 <div class="poster four">FANTASY WORLDS</div>
 <h3>Fantasy & Sci-Fi</h3>
@@ -151,32 +195,102 @@ section{padding:42px 5%}
 </div>
 </section>
 
-<section>
-<h2 class="section-title">Creator Showcase</h2>
-<p class="section-sub">A place for creators to share their AI creations.</p>
+<!-- CREATOR GALLERY -->
+<section id="gallery">
+<h2 class="section-title">VIBORA Creator Gallery</h2>
+<p class="section-sub">Discover creativity from the VIBORA community.</p>
+
 <div class="feature">
 <div style="font-size:42px">🌍 🎨 🎬</div>
-<h2>Let the World See Your Creativity</h2>
-<p>Creator profiles and public project showcases are coming soon.</p>
+<h2>Welcome to the Creative Community</h2>
+<p>Explore images, videos and stories created by VIBORA members.</p>
+<br>
+<button class="btn" onclick="openAccount()">Create Free Account</button>
+</div>
+
+<div style="margin-top:30px">
+<div class="gallery-controls">
+<button class="active" onclick="filterGallery('all',this)">All Creations</button>
+<button onclick="filterGallery('image',this)">Images</button>
+<button onclick="filterGallery('video',this)">Videos</button>
+<button onclick="filterGallery('story',this)">Stories</button>
+</div>
+
+<div id="galleryContent" class="gallery-grid">
+<div class="gallery-card" data-type="image">
+<div class="gallery-art">🎨</div>
+<div class="gallery-info">
+<span class="gallery-label">Image</span>
+<h3>Creative Worlds</h3>
+<p>VIBORA AI community showcase</p>
+</div>
+</div>
+
+<div class="gallery-card" data-type="video">
+<div class="gallery-art video">🎬</div>
+<div class="gallery-info">
+<span class="gallery-label">Video</span>
+<h3>Cinematic Moments</h3>
+<p>VIBORA AI community showcase</p>
+</div>
+</div>
+
+<div class="gallery-card" data-type="story">
+<div class="gallery-art story">📖</div>
+<div class="gallery-info">
+<span class="gallery-label">Story</span>
+<h3>Stories Without Limits</h3>
+<p>VIBORA AI community showcase</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="notice">
+Gallery access, creator uploads and publishing will require a registered VIBORA account. These sample cards are illustrations, not real member uploads.
+</div>
+</section>
+
+<!-- MEMBER DASHBOARD PREVIEW -->
+<section id="dashboard" class="hidden">
+<h2 class="section-title">Creator Dashboard</h2>
+<p class="section-sub">Your creative space on VIBORA AI.</p>
+
+<div class="dashboard">
+<h2>My Creations</h2>
+<p style="color:#aaa;margin:8px 0 20px">Manage your published and private projects.</p>
+
+<button class="btn" onclick="openPublish()">+ Add a Creation</button>
+
+<div class="notice">
+Your creations will be saved to your account after the VIBORA account system is connected.
+</div>
+
+<div id="myCreations" class="empty">
+You haven't published any creations yet.
+</div>
 </div>
 </section>
 
 <section id="pricing">
 <h2 class="section-title">Choose Your Creative Plan</h2>
 <p class="section-sub">Start free and upgrade when you need more.</p>
+
 <div class="plans">
 <div class="card">
 <h3>Free Creator</h3>
 <div class="price">Free</div>
-<p>Try the studio with limited free credits.</p>
-<button onclick="demo('Free Plan')">Get Started</button>
+<p>Join the VIBORA community and explore your creative possibilities.</p>
+<button onclick="openAccount()">Create Free Account</button>
 </div>
+
 <div class="card">
 <h3>Creator Plus</h3>
 <div class="price">Coming Soon</div>
 <p>More creative credits and advanced tools.</p>
 <button onclick="demo('Creator Plus')">Explore Plan</button>
 </div>
+
 <div class="card">
 <h3>Pro Creator</h3>
 <div class="price">Coming Soon</div>
@@ -190,15 +304,140 @@ section{padding:42px 5%}
 <h2 style="color:#a78bfa">VIBORA AI</h2>
 <p>Create Without Limits.</p>
 <p>© 2026 VIBORA AI. All rights reserved.</p>
-<p>Images and movie previews on this demo are illustrative.</p>
+<p>Images and movie previews are illustrative.</p>
 </footer>
+
+<!-- ACCOUNT MODAL -->
+<div class="modal" id="accountModal">
+<div class="modal-box">
+<button class="close" onclick="closeModal('accountModal')">&times;</button>
+
+<h2>Join VIBORA AI</h2>
+<p>Create your free account and become part of our creative community.</p>
+
+<div class="notice">
+Free registration. Account security and database connection must be completed before real accounts can be created.
+</div>
+
+<label>Full Name</label>
+<input type="text" id="regName" placeholder="Enter your full name">
+
+<label>Email Address</label>
+<input type="email" id="regEmail" placeholder="Enter your email">
+
+<label>Create Password</label>
+<input type="password" id="regPassword" placeholder="Create a password">
+
+<button class="btn" style="width:100%" onclick="accountNotice()">Create Free Account</button>
+
+<p style="margin-top:18px">Already a member?</p>
+<button class="btn secondary" onclick="showLogin()">Sign In</button>
+</div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+<div class="modal-box">
+<button class="close" onclick="closeModal('loginModal')">&times;</button>
+
+<h2>Welcome Back</h2>
+<p>Sign in to your VIBORA AI account.</p>
+
+<label>Email Address</label>
+<input type="email" id="loginEmail" placeholder="Your email">
+
+<label>Password</label>
+<input type="password" id="loginPassword" placeholder="Your password">
+
+<button class="btn" style="width:100%" onclick="accountNotice()">Sign In</button>
+
+<div class="notice">Secure login will be activated when the account system is connected.</div>
+</div>
+</div>
+
+<!-- PUBLISH MODAL -->
+<div class="modal" id="publishModal">
+<div class="modal-box">
+<button class="close" onclick="closeModal('publishModal')">&times;</button>
+
+<h2>Publish a Creation</h2>
+<p>Share your creativity with the VIBORA community.</p>
+
+<label>Creation Title</label>
+<input type="text" placeholder="Give your creation a title">
+
+<label>Creation Type</label>
+<select>
+<option>Image</option>
+<option>Video</option>
+<option>Story or Script</option>
+</select>
+
+<label>Describe your creation</label>
+<textarea rows="4" placeholder="Tell the community about your work"></textarea>
+
+<label>Visibility</label>
+<select>
+<option>Public - Everyone can see it</option>
+<option>Private - Only I can see it</option>
+</select>
+
+<div class="notice">Publishing and file uploads will be enabled after account and storage services are connected.</div>
+
+<button class="btn" style="width:100%" onclick="accountNotice()">Publish Creation</button>
+</div>
+</div>
 
 <script>
 function demo(feature){
 alert(feature + " will be available when the AI services are connected to VIBORA.");
 }
+
+function openAccount(){
+document.getElementById("accountModal").classList.add("show");
+}
+
+function closeModal(id){
+document.getElementById(id).classList.remove("show");
+}
+
+function showLogin(){
+closeModal("accountModal");
+document.getElementById("loginModal").classList.add("show");
+}
+
+function openPublish(){
+document.getElementById("publishModal").classList.add("show");
+}
+
+function accountNotice(){
+alert("The VIBORA account system is not connected yet. No account has been created. We will connect secure registration and login before launch.");
+}
+
+function filterGallery(type,button){
+document.querySelectorAll(".gallery-controls button").forEach(function(btn){
+btn.classList.remove("active");
+});
+button.classList.add("active");
+
+document.querySelectorAll("#galleryContent .gallery-card").forEach(function(card){
+if(type==="all" || card.dataset.type===type){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+});
+}
+
+document.querySelectorAll(".modal").forEach(function(modal){
+modal.addEventListener("click",function(event){
+if(event.target===modal){
+modal.classList.remove("show");
+}
+});
+});
 </script>
 
 </body>
  </html>
- 
+                                           
