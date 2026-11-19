@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -328,7 +329,7 @@ Free registration. Account security and database connection must be completed be
 <label>Create Password</label>
 <input type="password" id="regPassword" placeholder="Create a password">
 
-<button class="btn" style="width:100%" onclick="accountNotice()">Create Free Account</button>
+<button class="btn" style="width:100%" onclick="signUp()">Create Free Account</button>
 
 <p style="margin-top:18px">Already a member?</p>
 <button class="btn secondary" onclick="showLogin()">Sign In</button>
@@ -349,7 +350,7 @@ Free registration. Account security and database connection must be completed be
 <label>Password</label>
 <input type="password" id="loginPassword" placeholder="Your password">
 
-<button class="btn" style="width:100%" onclick="accountNotice()">Sign In</button>
+<button class="btn" style="width:100%" onclick="SignIn()">Sign In</button>
 
 <div class="notice">Secure login will be activated when the account system is connected.</div>
 </div>
@@ -410,10 +411,59 @@ function openPublish(){
 document.getElementById("publishModal").classList.add("show");
 }
 
-function accountNotice(){
-alert("The VIBORA account system is not connected yet. No account has been created. We will connect secure registration and login before launch.");
+ async function signUp(){
+  const fullName = document.getElementById("regName").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const password = document.getElementById("regPassword").value;
+
+  if(!fullName || !email || !password){
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if(password.length < 8){
+    alert("Password must be at least 8 characters.");
+    return;
+  }
+
+  const username = fullName.toLowerCase().replace(/[^a-z0-9]+/g,"").slice(0,24);
+
+  const {data,error} = await supabaseClient.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      emailRedirectTo: window.location.origin,
+      data: {
+        full_name: fullName,
+        username: username
+      }
+    }
+  });
+
+  if(error){
+    alert(error.message);
+    return;
+  }
+
+  alert("Registration received. Check your email for the confirmation link.");
 }
 
+async function signIn(){
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+
+  const {data,error} = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if(error){
+    alert(error.message);
+    return;
+  }
+
+  alert("Welcome back! You are signed in.");
+   }
 function filterGallery(type,button){
 document.querySelectorAll(".gallery-controls button").forEach(function(btn){
 btn.classList.remove("active");
@@ -437,7 +487,13 @@ modal.classList.remove("show");
 });
 });
 </script>
+const SUPABASE_URL = "https://gtjfwiqppitdrxmuxbfv.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_v-TiSYFzpieOMdv9Ztlcng_hSi7IKgM";
 
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 </body>
  </html>
                                            
