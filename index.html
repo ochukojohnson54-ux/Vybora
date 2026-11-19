@@ -1,49 +1,405 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VYBORA — Where creators and entertainment meet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIBORA - Entertainment, Learning & Creators</title>
+
 <style>
-:root{--bg:#0b0b12;--panel:#151522;--muted:#a7a7b8;--text:#fff;--a:#9b5cff;--b:#ff4da6}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,Arial,sans-serif}
-header{position:sticky;top:0;background:#10101bea;backdrop-filter:blur(12px);border-bottom:1px solid #29293a;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:14px;z-index:2}
-.logo{font-size:25px;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,var(--a),var(--b));color:transparent;background-clip:text}
-nav{display:flex;gap:18px;flex-wrap:wrap}a{color:var(--muted);text-decoration:none}a:hover{color:white}
-main{max-width:1180px;margin:auto;padding:28px 5% 70px}
-.hero{padding:38px 28px;border:1px solid #37304d;border-radius:24px;background:radial-gradient(circle at 85% 20%,#652d9b88,transparent 36%),linear-gradient(120deg,#1b1730,#11111b);margin-bottom:28px}
-.hero h1{font-size:clamp(32px,6vw,58px);line-height:1.05;margin:0 0 12px}.gradient{background:linear-gradient(90deg,#bd8cff,#ff78bd);color:transparent;background-clip:text}
-.hero p{color:#d1cddd;max-width:580px}.btn{border:0;border-radius:999px;padding:12px 19px;background:linear-gradient(90deg,var(--a),var(--b));color:white;font-weight:700;cursor:pointer}
-.search{width:100%;max-width:430px;padding:12px 16px;border:1px solid #38384b;border-radius:999px;background:#171722;color:white;margin:8px 0 22px}
-.chips{display:flex;gap:9px;overflow:auto;padding-bottom:14px}.chip{white-space:nowrap;padding:8px 14px;border-radius:30px;background:#1b1b2a;color:#ddd;border:1px solid #303044}
-h2{margin:22px 0 14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:17px}
-.card{background:var(--panel);border:1px solid #29293b;border-radius:17px;overflow:hidden}.thumb{height:145px;background:linear-gradient(135deg,#39205e,#9b3e83 55%,#f18a8a);display:grid;place-items:center;font-size:42px}.card:nth-child(2) .thumb{background:linear-gradient(135deg,#173c59,#397e91)}.card:nth-child(3) .thumb{background:linear-gradient(135deg,#5b3024,#c17b3e)}.card:nth-child(4) .thumb{background:linear-gradient(135deg,#283c2c,#78a36b)}
-.info{padding:13px}.info strong{display:block}.info small{color:var(--muted)}
-footer{border-top:1px solid #29293a;color:var(--muted);padding:24px 5%;text-align:center}
-.modal{display:none;position:fixed;inset:0;background:#000b;z-index:5;place-items:center;padding:20px}.modal.open{display:grid}.dialog{width:min(440px,100%);background:#191927;border:1px solid #44405a;border-radius:18px;padding:22px}.dialog input{display:block;width:100%;margin:12px 0;padding:12px;border-radius:9px;border:1px solid #44405a;background:#10101a;color:white}
-@media(max-width:600px){header{align-items:flex-start;flex-direction:column}nav{gap:12px;font-size:13px}.hero{padding:28px 20px}}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #090914;
+  color: white;
+  line-height: 1.6;
+}
+
+header {
+  background: #111126;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  border-bottom: 1px solid #29294a;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: bold;
+  color: #a855f7;
+  letter-spacing: 2px;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+nav button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+nav button:hover,
+nav button.active {
+  color: #c084fc;
+}
+
+.hero {
+  padding: 75px 7%;
+  text-align: center;
+  background: linear-gradient(135deg, #24104b, #111126, #35104c);
+}
+
+.hero h1 {
+  font-size: clamp(32px, 6vw, 55px);
+  margin-bottom: 15px;
+}
+
+.hero h1 span {
+  color: #c084fc;
+}
+
+.hero p {
+  color: #d1cde0;
+  max-width: 650px;
+  margin: auto;
+}
+
+.hero button,
+.action-button {
+  background: #9333ea;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 7px;
+  margin-top: 22px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.hero button:hover,
+.action-button:hover {
+  background: #7e22ce;
+}
+
+.container {
+  padding: 45px 7%;
+}
+
+.section-title {
+  font-size: 27px;
+  margin-bottom: 20px;
+  color: #d8b4fe;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #17172c;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #30304e;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #a855f7;
+}
+
+.card h3 {
+  color: #c084fc;
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: #c7c4d5;
+}
+
+.page {
+  display: none;
+  min-height: 65vh;
+}
+
+.page.active {
+  display: block;
+}
+
+.search {
+  width: 100%;
+  max-width: 500px;
+  padding: 13px;
+  border-radius: 7px;
+  border: 1px solid #555;
+  background: #17172c;
+  color: white;
+  margin: 15px 0 25px;
+}
+
+.form-box {
+  max-width: 550px;
+  background: #17172c;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #30304e;
+}
+
+.form-box input,
+.form-box textarea,
+.form-box select {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin: 12px 0;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #090914;
+  color: white;
+}
+
+.form-box textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.message {
+  margin-top: 15px;
+  color: #c4b5fd;
+}
+
+footer {
+  background: #111126;
+  text-align: center;
+  padding: 25px;
+  color: #aaa;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  nav button {
+    font-size: 13px;
+  }
+
+  .hero {
+    padding: 55px 6%;
+  }
+}
 </style>
 </head>
+
 <body>
-<header><div class="logo">VYBORA</div><nav><a href="#">Home</a><a href="#movies">Movies</a><a href="#music">Music</a><a href="#learn">Learning</a><a href="#creators">Creators</a></nav><button class="btn" onclick="openModal()">Sign in / Join</button></header>
+
+<header>
+  <div class="logo">VIBORA</div>
+
+  <nav>
+    <button class="active" onclick="showPage('home', this)">Home</button>
+    <button onclick="showPage('movies', this)">Movies</button>
+    <button onclick="showPage('music', this)">Music</button>
+    <button onclick="showPage('learning', this)">Learning</button>
+    <button onclick="showPage('creators', this)">Creators</button>
+  </nav>
+</header>
+
 <main>
-<section class="hero"><h1>Where creators and <span class="gradient">entertainment</span> meet.</h1><p>Discover movies, AI creations, comedy, music, learning and fresh videos from creators everywhere.</p><button class="btn" onclick="document.getElementById('discover').scrollIntoView({behavior:'smooth'})">Explore videos</button></section>
-<input class="search" id="search" placeholder="Search videos, movies and creators..." oninput="filterCards()">
-<div class="chips"><span class="chip">For you</span><span class="chip">Trending</span><span class="chip">AI movies</span><span class="chip">Comedy</span><span class="chip">Music</span><span class="chip">Education</span><span class="chip">Short films</span></div>
-<section id="discover"><h2>Discover on VYBORA</h2><div class="grid" id="cards">
-<article class="card"><div class="thumb">▶</div><div class="info"><strong>Featured AI Movie</strong><small>VYBORA Originals · Sample video</small></div></article>
-<article class="card"><div class="thumb">♪</div><div class="info"><strong>Music & Performances</strong><small>Creator spotlight · Sample video</small></div></article>
-<article class="card"><div class="thumb">✦</div><div class="info"><strong>Comedy & Skits</strong><small>Trending creators · Sample video</small></div></article>
-<article class="card"><div class="thumb">▶</div><div class="info"><strong>Learn Something New</strong><small>Learning hub · Sample video</small></div></article>
-</div></section>
-<section id="movies"><h2>Movies & series</h2><p style="color:var(--muted)">A home for short films, episodes and independent productions.</p></section>
-<section id="creators"><h2>For creators</h2><p style="color:var(--muted)">Build your channel, share your work and grow your audience.</p><button class="btn" onclick="openModal()">Join as a creator</button></section>
+
+<section id="home" class="page active">
+  <div class="hero">
+    <h1>Welcome to <span>VIBORA</span></h1>
+    <p>
+      Your world of entertainment, music, movies, learning
+      and creative talents. Discover, learn and share your creativity.
+    </p>
+    <button onclick="showPage('creators')">Join as a Creator</button>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title">Explore Vibora</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Movies & Series</h3>
+        <p>Explore movies, exciting stories and series.</p>
+        <button class="action-button" onclick="showPage('movies')">Explore Movies</button>
+      </div>
+
+      <div class="card">
+        <h3>Music & Performance</h3>
+        <p>Discover music, performances and new talents.</p>
+        <button class="action-button" onclick="showPage('music')">Explore Music</button>
+      </div>
+
+      <div class="card">
+        <h3>Learning</h3>
+        <p>Discover educational content and useful skills.</p>
+        <button class="action-button" onclick="showPage('learning')">Start Learning</button>
+      </div>
+
+      <div class="card">
+        <h3>Creators</h3>
+        <p>Join a community of people sharing their talents.</p>
+        <button class="action-button" onclick="showPage('creators')">Join Vibora</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="movies" class="page">
+  <div class="container">
+    <h2 class="section-title">Movies & Series</h2>
+    <p>Discover movies, short films and exciting series on Vibora.</p>
+    <input class="search" type="search" placeholder="Search movies..." oninput="filterCards(this, 'movie-list')">
+
+    <div class="cards" id="movie-list">
+      <div class="card"><h3>Movies</h3><p>Movie content will appear here.</p></div>
+      <div class="card"><h3>Short Films</h3><p>Discover short films and stories.</p></div>
+      <div class="card"><h3>Series</h3><p>Explore exciting series.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="music" class="page">
+  <div class="container">
+    <h2 class="section-title">Music & Performance</h2>
+    <p>Discover songs, artists, performances and entertainment.</p>
+    <input class="search" type="search" placeholder="Search music..." oninput="filterCards(this, 'music-list')">
+
+    <div class="cards" id="music-list">
+      <div class="card"><h3>Music Spot</h3><p>Discover new music and artists.</p></div>
+      <div class="card"><h3>Performances</h3><p>Enjoy creative performances.</p></div>
+      <div class="card"><h3>New Artists</h3><p>Find emerging music talents.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="learning" class="page">
+  <div class="container">
+    <h2 class="section-title">Learning Centre</h2>
+    <p>Learn new things, develop your skills and grow.</p>
+    <input class="search" type="search" placeholder="Search learning..." oninput="filterCards(this, 'learning-list')">
+
+    <div class="cards" id="learning-list">
+      <div class="card"><h3>Education</h3><p>Explore educational content.</p></div>
+      <div class="card"><h3>Skills</h3><p>Discover useful practical skills.</p></div>
+      <div class="card"><h3>Tutorials</h3><p>Learn through helpful tutorials.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="creators" class="page">
+  <div class="container">
+    <h2 class="section-title">Join Vibora as a Creator</h2>
+    <p>Are you a musician, filmmaker, teacher or content creator? We welcome you.</p>
+
+    <div class="form-box">
+      <h3>Creator Registration</h3>
+
+      <form id="creator-form">
+        <input type="text" placeholder="Your full name" required>
+        <input type="email" placeholder="Your email address" required>
+
+        <select required>
+          <option value="">Select your category</option>
+          <option>Musician</option>
+          <option>Filmmaker</option>
+          <option>Educator</option>
+          <option>Comedian</option>
+          <option>Content Creator</option>
+          <option>Other</option>
+        </select>
+
+        <textarea placeholder="Tell us about yourself and your talent" required></textarea>
+
+        <button class="action-button" type="submit">Submit Application</button>
+      </form>
+
+      <p class="message" id="form-message"></p>
+    </div>
+  </div>
+</section>
+
 </main>
-<footer>© 2026 VYBORA · Where creators and entertainment meet.</footer>
-<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="dialog"><h2>Welcome to VYBORA</h2><p style="color:var(--muted)">Account sign-in and registration will be connected in the next development step.</p><input placeholder="Email address" type="email"><input placeholder="Password" type="password"><button class="btn" onclick="alert('This is a visual prototype. Account creation is not connected yet.')">Continue</button> <button class="chip" onclick="closeModal()">Close</button></div></div>
+
+<footer>
+  <p>© 2026 VIBORA. Entertainment, Learning & Creativity.</p>
+  <p>Discover. Create. Inspire.</p>
+</footer>
+
 <script>
-function openModal(){document.getElementById('modal').classList.add('open')}
-function closeModal(){document.getElementById('modal').classList.remove('open')}
-function filterCards(){const q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('#cards .card').forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none')}
+function showPage(pageId, button) {
+  document.querySelectorAll('.page').forEach(function(page) {
+    page.classList.remove('active');
+  });
+
+  const selectedPage = document.getElementById(pageId);
+
+  if (selectedPage) {
+    selectedPage.classList.add('active');
+  }
+
+  document.querySelectorAll('nav button').forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+
+  if (button) {
+    button.classList.add('active');
+  } else {
+    document.querySelectorAll('nav button').forEach(function(btn) {
+      if (btn.getAttribute('onclick').includes("'" + pageId + "'")) {
+        btn.classList.add('active');
+      }
+    });
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function filterCards(input, listId) {
+  const searchText = input.value.toLowerCase();
+  const cards = document.querySelectorAll('#' + listId + ' .card');
+
+  cards.forEach(function(card) {
+    card.style.display = card.textContent.toLowerCase().includes(searchText)
+      ? ''
+      : 'none';
+  });
+}
+
+document.getElementById('creator-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  document.getElementById('form-message').textContent =
+    'Thank you for your interest in Vibora! Registration submission needs to be connected to a server before applications can be received.';
+
+  this.reset();
+});
 </script>
-</body></html>
+
+</body>
+      </html>
+  
